@@ -1,0 +1,32 @@
+network:
+  target_host: "192.168.1.1"
+  protocol: "tcp"
+  port: 8080
+  timeout_seconds: 30
+  retry_count: 3
+
+tests:
+  - name: l2_connectivity
+    protocol: L2
+    expected_latency_ms: 1.0
+  - name: l3_routing
+    protocol: L3
+    expected_latency_ms: 1.5
+  - name: p4_dataplane
+    protocol: P4
+    expected_latency_ms: 2.0
+
+database:
+  path: "network_tests.db"
+
+logging:
+  level: INFO
+```
+
+---
+
+**File 8: `requirements.txt`**
+```
+pyyaml==6.0
+pytest==7.4.0
+ansible==8.0.0
